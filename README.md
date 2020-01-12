@@ -49,6 +49,9 @@ No provider.
 | project\_id | ID of the project to which the Cloudfunction is deployed |
 | region | Region to which the Cloudfunction is deployed |
 | runtime | The runtime in which the function is going to run |
+| scheduler\_name | n/a |
+| scheduler\_schedule | n/a |
+| scheduler\_time\_zone | n/a |
 | service\_account | Service Account for the Cloud Function |
 | service\_account\_email | The email for the Service Account to run the function with |
 | source\_repository | The URL pointing to the hosted repository where the function was defined at the time of deployment. |

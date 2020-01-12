@@ -47,3 +47,18 @@ output "entry_point" {
   value       = module.main.entry_point
   description = "Name of the function that will be executed when the Google Cloud Function is triggered."
 }
+
+output "scheduler_name" {
+  value       = google_cloud_scheduler_job.this.name
+  descruotuib = "Name of the Cloud Scheduler job"
+}
+
+output "scheduler_schedule" {
+  value       = google_cloud_scheduler_job.this.schedule
+  descruotuib = "The schedule for the Cloud Scheduler job"
+}
+
+output "scheduler_time_zone" {
+  value       = google_cloud_scheduler_job.this.time_zone
+  descruotuib = "The time zone to be used in interpreting schedule of the Cloud Scheduler job"
+}
