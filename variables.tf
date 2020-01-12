@@ -109,6 +109,18 @@ variable "region" {
   description = "Region to which the Cloudfunction will be deployed"
 }
 
+variable "retry_config" {
+  type = object({
+    retry_count          = number
+    max_retry_duration   = string
+    min_backoff_duration = string
+    max_backoff_duration = string
+    max_doublings        = number
+  })
+  description = "If a job does not complete successfully, meaning that an acknowledgement is not received from the handler, then it will be retried with exponential backoff according to the settings"
+  default     = null
+}
+
 variable "runtime" {
   type        = string
   description = "The runtime in which the function is going to run."
@@ -124,6 +136,12 @@ variable "source_repository_url" {
   type        = string
   description = "The URL pointing to the hosted Cloud Source repository where the function is defined."
   default     = null
+}
+
+variable "time_zone" {
+  type        = string
+  description = "Specifies the time zone to be used in interpreting schedule. The value of this field must be a time zone name from the tz database."
+  default     = "Etc/UTC"
 }
 
 variable "timeout" {

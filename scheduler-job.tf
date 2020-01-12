@@ -58,12 +58,15 @@ locals {
     ]
     : []
   )
+
+  retry_config = var.retry_config != null ? [var.retry_config] : []
 }
 
 resource "google_cloud_scheduler_job" "this" {
   name        = var.name
   description = var.description
   schedule    = var.schedule
+  time_zone   = var.time_zone
 
   dynamic "http_target" {
     for_each = local.http_target
@@ -92,6 +95,18 @@ resource "google_cloud_scheduler_job" "this" {
       topic_name = pubsub_target.value.topic_name
       data       = pubsub_target.value.data
       attributes = pubsub_target.value.attributes
+    }
+  }
+
+  dynamic "retry_config" {
+    for_each = local.retry_config
+
+    content {
+      retry_count          = retry_config.value.retry_count
+      max_retry_duration   = retry_config.value.max_retry_duration
+      min_backoff_duration = retry_config.value.min_backoff_duration
+      max_backoff_duration = retry_config.value.max_backoff_duration
+      max_doublings        = retry_config.value.max_doublings
     }
   }
 }
