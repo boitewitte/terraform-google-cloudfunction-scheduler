@@ -31,13 +31,26 @@ No provider.
 | project\_id | The Project ID to which the function will be deployed | `string` | `"null"` | no |
 | project\_roles | List of roles within other projects that will be attached to the Cloudfunction | `object` | `[]` | no |
 | pubsub | The configuration for the PubSub, if null, the HTML trigger will be used | `object` | `"null"` | no |
+| retry\_config | If a job does not complete successfully, meaning that an acknowledgement is not received from the handler, then it will be retried with exponential backoff according to the settings | `object` | `"null"` | no |
 | roles | List of roles that will be attached to the Cloudfunction within the same project | `list(string)` | `[]` | no |
 | source\_repository\_url | The URL pointing to the hosted Cloud Source repository where the function is defined. | `string` | `"null"` | no |
+| time\_zone | Specifies the time zone to be used in interpreting schedule. The value of this field must be a time zone name from the tz database. | `string` | `"Etc/UTC"` | no |
 | timeout | Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds. | `number` | `60` | no |
 | vpc\_connector | The VPC Network Connector that this cloud function can connect to. | `string` | `"null"` | no |
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| available\_memory\_mb | Memory (in MB), available to the function. |
+| entry\_point | Name of the function that will be executed when the Google Cloud Function is triggered. |
+| https\_trigger\_url | URL which triggers function execution. Returned only if trigger\_http is used. |
+| name | The name for the Cloudfunction |
+| project\_id | ID of the project to which the Cloudfunction is deployed |
+| region | Region to which the Cloudfunction is deployed |
+| runtime | The runtime in which the function is going to run |
+| service\_account | Service Account for the Cloud Function |
+| service\_account\_email | The email for the Service Account to run the function with |
+| source\_repository | The URL pointing to the hosted repository where the function was defined at the time of deployment. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
