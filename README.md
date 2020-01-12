@@ -24,8 +24,8 @@ No provider.
 | function\_source | Defines the Source configuration for the Cloudfunction. Can't be used in conjunction with source\_repository\_url | `object` | `"null"` | no |
 | http | Configuration for the HTTP trigger | `object` | `"null"` | no |
 | http\_oauth\_token | Service acccount for Triggering the Function | `object` | `"null"` | no |
-| invokers | List of IAM members who are allowed to invoke the function | `list(string)` | `[]` | no |
-| is\_public\_function | Gives all users the right to invoke the function | `bool` | `false` | no |
+| invoker\_members | Cloudfunction can be invoked by the members defined in this list | `list(string)` | `[]` | no |
+| is\_public\_function | Cloudfunction can be invoked by all users - Public function | `bool` | `false` | no |
 | labels | A set of key/value label pairs to assign to the function. | `map(string)` | `{}` | no |
 | max\_instances | The limit on the maximum number of function instances that may coexist at a given time. | `number` | `"null"` | no |
 | project\_id | The Project ID to which the function will be deployed | `string` | `"null"` | no |

@@ -31,6 +31,17 @@ variable "event_triggers" {
   default     = []
 }
 
+variable "function_source" {
+  type = object({
+    name      = string
+    bucket    = string
+    directory = string
+    file      = string
+  })
+  description = "Defines the Source configuration for the Cloudfunction. Can't be used in conjunction with source_repository_url"
+  default     = null
+}
+
 variable "http" {
   type = object({
     http_method  = string
@@ -52,26 +63,15 @@ variable "http_oauth_token" {
   default     = null
 }
 
-variable "function_source" {
-  type = object({
-    name      = string
-    bucket    = string
-    directory = string
-    file      = string
-  })
-  description = "Defines the Source configuration for the Cloudfunction. Can't be used in conjunction with source_repository_url"
-  default     = null
-}
-
-variable "invokers" {
+variable "invoker_members" {
   type        = list(string)
-  description = "List of IAM members who are allowed to invoke the function"
+  description = "Cloudfunction can be invoked by the members defined in this list"
   default     = []
 }
 
 variable "is_public_function" {
   type        = bool
-  description = "Gives all users the right to invoke the function"
+  description = "Cloudfunction can be invoked by all users - Public function"
   default     = false
 }
 
